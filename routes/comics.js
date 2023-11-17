@@ -8,14 +8,14 @@ const api_key = process.env.MARVEL_API_KEY;
 
 router.get("/comics", async (req, res) => {
   try {
-    let { limit, skip, title } = req.query;
+    let { skip, title } = req.query;
 
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${
         process.env.MARVEL_API_KEY
-      }&title=${title || ""}&limit=${limit || ""}&skip=${skip || ""}`
+      }&title=${title || ""}&skip=${skip || ""}`
     );
-    res.json(response.data.results);
+    res.json(response.data);
   } catch (error) {
     res.status(500).json(error.message);
   }
