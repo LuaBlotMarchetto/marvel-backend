@@ -10,14 +10,14 @@ const api_key = process.env.MARVEL_API_KEY;
 
 router.get("/characters", async (req, res) => {
   try {
-    let { limit, skip, name } = req.query;
+    let { skip, name } = req.query;
 
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${
         process.env.MARVEL_API_KEY
-      }&name=${name || ""}&limit=${limit || ""}&skip=${skip || ""}`
+      }&name=${name || ""}&skip=${skip || ""}`
     );
-    res.json(response.data.results);
+    res.json(response.data);
   } catch (error) {
     res.status(500).json(error.message);
   }
